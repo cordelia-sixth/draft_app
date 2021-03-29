@@ -7,7 +7,7 @@ const UseAxios = () => {
   const [data, setDate] = useState([]);
 
   const getRequest = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users')
+    axios.get('http://localhost:3000/users/index')
       .then(res => {setDate(res.data)});
   };
 
