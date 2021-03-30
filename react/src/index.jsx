@@ -11,9 +11,13 @@ const UseAxios = () => {
       .then(res => {setDate(res.data)});
   };
 
+  // const postRequest = () => {
+  //   axios.post('http://localhost:3000/users/')
+  // }
+
   return (
     <div>
-      <button onClick={() => getRequest()}>click</button>
+      <button onClick={() => getRequest()}>ユーザー一覧</button>
       <ul>
         {data.map(data => <li>{data.name}</li>)}
       </ul>
