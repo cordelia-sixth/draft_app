@@ -1,23 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import { MessageForm } from './componets/MesseageForm';
+import { PostRequest } from './componets/PostRequest';
 const { useState } = React;
 
 const UseAxios = () => {
   const [data, setDate] = useState([]);
 
   const getRequest = () => {
-    axios.get('http://localhost:3000/users/index')
+    axios.get('http://localhost:3000/users')
       .then(res => {setDate(res.data)});
   };
 
-  // const postRequest = () => {
-  //   axios.post('http://localhost:3000/users/')
-  // }
-
   return (
     <div>
-      <button onClick={() => getRequest()}>ユーザー一覧</button>
+      <button onClick={() => getRequest()}>users</button>
       <ul>
         {data.map(data => <li>{data.name}</li>)}
       </ul>
@@ -27,5 +25,11 @@ const UseAxios = () => {
 
 ReactDOM.render(
   <UseAxios />,
-  document.getElementById('root')
+  document.getElementById('get')
+);
+
+ReactDOM.render(
+  // <UseAxios />,
+  <PostRequest />,
+  document.getElementById('post')
 );

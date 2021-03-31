@@ -13,10 +13,10 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
       headers: :any,
 
       # 許可するリクエストメソッドを指定する
-      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+      methods: [:get, :post, :put, :patch, :delete, :options, :head],
 
-      # cookeiを許可する
-      # credentials: true,
+      # cookieを許可する
+      credentials: true
 
       # response headerを追加できる
       # expose: %w[access-token uid client expiry]

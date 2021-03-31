@@ -5,10 +5,9 @@ class UsersController < ApplicationController
     render json: @users
   end
 
-  # def create
-  #   # リクエストパラメータを受け取る
-  #   @user = User.new(params)
-  #   # DBに保存する
-  #   @user.save
-  # end
+  def create
+    request_data = JSON.parse(request.body.read)
+    user = User.create(name: params[:name])
+    render json: {success: "Hello, #{user.name}"}
+  end
 end
