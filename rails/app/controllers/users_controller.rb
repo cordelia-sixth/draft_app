@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def create
     request_data = JSON.parse(request.body.read)
-    user = User.create(name: params[:name])
+    user = User.create(name: params[:name], email: params[:email])
     render json: {success: "Hello, #{user.name}"}
   end
 
