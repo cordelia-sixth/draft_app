@@ -1,15 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { 
-  Route,
-  Link,
-  useParams,
-  Switch
-} from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { New } from './New';
 
 // import Show from './Show';
-
 
 export const Users = () => {
   const [users, setUsers] = useState([]);
@@ -21,6 +15,11 @@ export const Users = () => {
     },
     [ref]
   );
+
+  const destroy = (id) => {
+    axios.delete("http://localhost:3000/users/" + id)
+      .then(res => alert(res.data.success));
+  };
 
   return (
     <div className="Users">
@@ -43,7 +42,9 @@ export const Users = () => {
                 <Link to={"/users/" + user.name}>Show</Link>
               </td>
               <td align="center">Edit</td>
-              <td align="center">Destroy</td>
+              <td align="center">
+                <Link to="/users/" onClick={() => destroy(user.id)}>Delete</Link>
+              </td>
             </tr>
           )}
         </tbody>

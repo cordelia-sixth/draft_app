@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.destroy(params[:id])
+    User.find(params[:id]).delete
+    render json: {success: "Successful deleting"}
   end
 end
