@@ -22,7 +22,7 @@ export const App = () => {
       </ul>
       <div>
         <Route exact path="/" component={Home} />
-        <Route exact path="/users/cordelia" component={Show} />
+        <Route exact path="/users/:id" component={Show} />
         <Route exact path="/users/" component={Users} />
         <Route exact path="/users/new" component={New} />
       </div>

@@ -1,29 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { 
-  Route,
-  Link,
-  Switch,
-  useParams
-} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 export const Show = () => {
   const [user, setUser] = useState({});
   const ref = useRef();
 
+  let history = useHistory();
+
   useEffect(() => {
-    axios.get('http://localhost:3000/users')
-      .then(response => {setUser(response.data[0])})
+    axios.get('http://localhost:3000/' + history.location.pathname)
+      .then(res => {setUser(res.data)})
     },
     [ref]
   );
 
-  console.log(user);
-
   return (
     <div className="Show">
       <ul>
-        <p>ID: {user.id}</p>
         <p>Name: {user.name}</p>
         <p>email: {user.email}</p>
       </ul>
