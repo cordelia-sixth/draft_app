@@ -9,6 +9,8 @@ export const Users = () => {
   const [users, setUsers] = useState([]);
   const ref = useRef();
 
+  let history = useHistory();
+
   useEffect(() => {
     axios.get('http://localhost:3000/users')
       .then(response => {setUsers(response.data)})
@@ -18,7 +20,11 @@ export const Users = () => {
 
   const destroy = (id) => {
     axios.delete("http://localhost:3000/users/" + id)
-      .then(res => alert(res.data.success));
+      .then(res => {
+        if (!alert(res.data.success)) {
+          history.push("/users");
+        }
+      });
   };
 
   return (
