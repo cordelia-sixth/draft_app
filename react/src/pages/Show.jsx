@@ -9,7 +9,7 @@ export const Show = () => {
   let history = useHistory();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/' + history.location.pathname)
+    axios.get('http://localhost:3000' + history.location.pathname)
       .then(res => {setUser(res.data)})
     },
     [ref]

@@ -4,10 +4,10 @@ import axios from 'axios';
 export const Show = (userId) => {
   const [user, setUser] = React.useState('');
 
-  axios.get(`localhost:3000/users/${userId}`)
-    .then(response => {
-      setUser(response.data);
-    });
+  // axios.get(`localhost:3000/users/${userId}`)
+  //   .then(response => {
+  //     setUser(response.data);
+  //   });
 
   return (
     <ul>

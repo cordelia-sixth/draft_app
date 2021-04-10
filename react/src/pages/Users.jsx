@@ -1,28 +1,37 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, Route, useHistory } from 'react-router-dom';
 import { New } from './New';
+import { Edit } from './Edit';
 
 // import Show from './Show';
 
 export const Users = () => {
   const [users, setUsers] = useState([]);
+  const [userNum, setUserNum] = useState(0);
   const ref = useRef();
 
   let history = useHistory();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/users')
-      .then(response => {setUsers(response.data)})
-    },
-    [ref]
+    getUsers();
+  },
+    [users.length]
   );
+
+  const getUsers = () => {
+    axios.get('http://localhost:3000/users')
+      .then(res => {setUsers(res.data)})
+  };
+
+  console.log(users);
 
   const destroy = (id) => {
     axios.delete("http://localhost:3000/users/" + id)
       .then(res => {
         if (!alert(res.data.success)) {
           history.push("/users");
+          getUsers();
         }
       });
   };
@@ -47,7 +56,9 @@ export const Users = () => {
               <td align="center">
                 <Link to={"/users/" + user.id}>Show</Link>
               </td>
-              <td align="center">Edit</td>
+              <td align="center">
+                <Link to={"/users/" + user.id + "/edit"}>Edit</Link>
+              </td>
               <td align="center">
                 <Link to="/users/" onClick={() => destroy(user.id)}>Delete</Link>
               </td>

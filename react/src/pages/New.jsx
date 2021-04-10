@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 export const New = () => {
@@ -7,6 +7,8 @@ export const New = () => {
     name: "",
     email: ""
   });
+
+  console.log("new");
 
   let history = useHistory();
 
@@ -50,6 +52,8 @@ export const New = () => {
 
         <input type="submit" onSubmit={handleSubmit} value="Create User"></input>
       </form>
+
+      <Link to="/users">Back</Link>
     </div>
   )
 };

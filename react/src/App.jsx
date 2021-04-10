@@ -5,9 +5,11 @@ import {
   Link,
   Switch
 } from 'react-router-dom';
+
 import { Users } from './pages/Users';
 import { Show } from './pages/Show';
 import { New } from './pages/New';
+import { Edit } from './pages/Edit';
 
 export const App = () => {
   return (
@@ -21,10 +23,13 @@ export const App = () => {
         </li>
       </ul>
       <div>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/users/:id" component={Show} />
-        <Route exact path="/users/" component={Users} />
-        <Route exact path="/users/new" component={New} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/users/new" component={New} />
+          <Route exact path="/users/:id" component={Show} />
+          <Route exact path="/users/:id/edit" component={Edit} />
+          <Route exact path="/users/" component={Users} />
+        </Switch>
       </div>
     </div>
   );
