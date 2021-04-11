@@ -19,16 +19,8 @@ export const Edit = (props) => {
 
   const update = event => {
     event.preventDefault();
-    // const user = {
-    //   name: event.target.name,
-    //   email: event.target.email
-    // };
     console.log(event.target.name);
     axios.put(`http://localhost:3000/users/${userId}`,
-    // {
-    //   name: event.target.name.value,
-    //   email: event.target.email.value
-    // })
     {
       name: user.name,
       email: user.email
@@ -37,6 +29,7 @@ export const Edit = (props) => {
         if (!alert(res.data.success)) {
           console.log(user);
         }
+        history.push('/users');
       })
   };
 
