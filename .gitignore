@@ -1,3 +1,5 @@
+/react/node_modules/
+
 /mysql/*
 !.gitignore
 
