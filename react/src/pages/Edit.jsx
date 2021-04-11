@@ -5,26 +5,52 @@ import { useHistory } from 'react-router-dom';
 export const Edit = (props) => {
   const [user, setUser] = useState({});
   const ref = useRef();
-  console.log(props.match.params.id);
+  const userId = props.match.params.id;
 
   let history = useHistory();
+  const effect = true;
 
   useEffect(() => {
     axios.get('http://localhost:3000/users/' + props.match.params.id)
       .then(res => {setUser(res.data)})
     },
-    [ref]
+    [effect]
   );
 
-  console.log(user);
+  const update = event => {
+    event.preventDefault();
+    // const user = {
+    //   name: event.target.name,
+    //   email: event.target.email
+    // };
+    console.log(event.target.name);
+    axios.put(`http://localhost:3000/users/${userId}`,
+    // {
+    //   name: event.target.name.value,
+    //   email: event.target.email.value
+    // })
+    {
+      name: user.name,
+      email: user.email
+    })
+      .then(res => {
+        if (!alert(res.data.success)) {
+          console.log(user);
+        }
+      })
+  };
+
+  const handleChange = event => {
+    setUser({ ...user, [event.target.name]: event.target.value });
+  };
 
   return (
     <div className="Edit">
       <h2>Editing user</h2>
-      <form>
+      <form onSubmit={update}>
         <div>
           <label>Name: </label>
-          <input type="text" name="name" value={user.name}></input>
+          <input type="text" name="name" value={user.name} onChange={handleChange}></input>
         </div>
         <div>
           <label>Email: </label>

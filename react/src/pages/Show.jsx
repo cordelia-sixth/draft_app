@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 export const Show = () => {
   const [user, setUser] = useState({});
@@ -17,10 +17,15 @@ export const Show = () => {
 
   return (
     <div className="Show">
-      <ul>
-        <p>Name: {user.name}</p>
-        <p>email: {user.email}</p>
-      </ul>
+      <div>
+        <ul>
+          <p>Name: {user.name}</p>
+          <p>email: {user.email}</p>
+        </ul>
+      </div>
+      <div>
+        <Link to="/users">Back</Link>
+      </div>
     </div>
   )
 };
