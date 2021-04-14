@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 export const Edit = (props) => {
   const [user, setUser] = useState({});
@@ -51,6 +51,8 @@ export const Edit = (props) => {
         </div>
         <input type="submit" value="Update"></input>
       </form>
+
+      <Link to="/users">Back</Link>
     </div>
   )
 };
