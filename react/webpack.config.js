@@ -8,6 +8,7 @@ module.exports = {
       filename: 'bundle.js',
       path: path.join(__dirname, "dist"),
       // ブラウザ更新に必要
+      // output.pathから先の、htmlファイルを配置するpathを記述する
       publicPath: "/",
 
     },
