@@ -10,6 +10,7 @@ import { Users } from './pages/Users';
 import { Show } from './pages/Show';
 import { New } from './pages/New';
 import { Edit } from './pages/Edit';
+import { Error } from './Error';
 
 export const App = () => {
   return (
@@ -29,6 +30,7 @@ export const App = () => {
           <Route exact path="/users/:id" component={Show} />
           <Route exact path="/users/:id/edit" component={Edit} />
           <Route exact path="/users/" component={Users} />
+          <Route path="*" component={Error} />
         </Switch>
       </div>
     </div>
