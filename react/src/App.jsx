@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
 import {
   Route,
   Link,
@@ -11,10 +10,11 @@ import { Show } from './pages/Show';
 import { New } from './pages/New';
 import { Edit } from './pages/Edit';
 import { Error } from './Error';
+import css from './style.css';
 
 export const App = () => {
   return (
-    <div className="App">
+    <div className={css.App}>
       <ul>
         <li>
           <Link to="/">Home</Link>

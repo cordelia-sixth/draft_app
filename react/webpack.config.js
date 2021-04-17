@@ -21,19 +21,37 @@ module.exports = {
         port: 8080,
     },
     module: {
-      rules: [{
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              "@babel/preset-env",
-              "@babel/react"
-            ]
+      rules: [
+        {
+          test: /\.css$/,
+          use: [
+            {
+              loader: 'style-loader'
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                modules: {
+                  localIdentName: '[name]__[local]___[hash:base64:5]'
+                }
+              }
+            }
+          ]
+        },
+        {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                "@babel/preset-env",
+                "@babel/react"
+              ]
+            }
           }
         }
-      }]
+      ]
     },
     target: ["web", "es5"],
     devtool: 'inline-source-map',
