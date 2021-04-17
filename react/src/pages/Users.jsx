@@ -1,3 +1,5 @@
+// ユーザー一覧を表示する
+
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link, Route, useHistory } from 'react-router-dom';
@@ -8,6 +10,7 @@ import { Edit } from './Edit';
 
 export const Users = () => {
   const [users, setUsers] = useState([]);
+  const [updateUsers, setUpdateUsers] = useState([]);
   const [userNum, setUserNum] = useState(0);
   const ref = useRef();
 
@@ -36,10 +39,34 @@ export const Users = () => {
       });
   };
 
+  const userFilter = (event) => {
+    if (event.target.value === '') {
+      setUpdateUsers([]);
+    } else {
+      let userName = [];
+      users.map(user =>　userName.push(user.name));
+      const result = userName.filter(user => 
+        user.toLowerCase().search(event.target.value.toLowerCase()) !== -1);
+      setUpdateUsers(result);
+    }
+  };
+
   return (
     <div className="Users">
 
       <h2>Users</h2>
+
+      <form>
+        <input type="text" placeholder="search user" onChange={userFilter} />
+      </form>
+
+      <div>
+        {updateUsers.map((user, index) => {
+          return <li key={index}>{user}</li>
+        })}
+      </div>
+
+      <br />
 
       <table width="600">
         <thead>
